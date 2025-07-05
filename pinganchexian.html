@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="background-color: rgb(255, 215, 180);">
+<head>
+    <meta charset="UTF-8">
+    <title>平安车险 - 投保信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 全局样式 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 背景图容器 */
+        /*
+		.background {
+            background-image: url('./index2.png');  替换为你自己的图片地址 
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }*/
+		
+		
+        /* 自适应背景图 */
+        .background-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain; /* 完整显示图片，保持比例 */
+            z-index: -1;
+        }
+
+        .overlay {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #e67300;
+            margin-bottom: 10px;
+        }
+
+        p.center {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        form input[type="text"],
+        form input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        form button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #ff6600;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #e65c00;
+        }
+
+        /* 新增样式 */
+        .plate-number {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .plate-number input {
+            width: 40px;
+            height: 40px;
+            margin-right: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .add-new-energy {
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            color: green;
+            cursor: pointer;
+        }
+
+        .add-new-energy + span {
+            margin-left: 5px;
+        }
+
+        /* 新能源输入框样式 */
+        .new-energy-input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-left: 5px;
+            font-size: 10px !important; /* 更小的字体 */
+            color: #888; /* 设置placeholder文字颜色 */
+            background-color: transparent; /* 如果需要透明背景 */
+            padding: 0; /* 去除内边距，让文字更居中 */
+            line-height: 40px; /* 垂直居中 */
+            -webkit-appearance: none; /* 移除浏览器默认样式 */
+        }
+
+        /* 确保placeholder的文字颜色和普通输入框内的文字颜色有所区别 */
+        .new-energy-input::-webkit-input-placeholder { /* WebKit browsers */
+            font-size: 10px !important;
+            color: #888;
+        }
+        .new-energy-input:-moz-placeholder,
+        .new-energy-input::-moz-placeholder,
+        .new-energy-input:-ms-input-placeholder {
+            font-size: 10px !important;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- 背景图 -->
+<img src="./index2.png" alt="背景图" class="background-img">
+
+
+<!-- 表单内容 -->
+<div class="overlay">
+    <div class="container">
+
+        <form id="insuranceForm">
+			<!--
+            <div class="plate-number">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" placeholder="新能源" class="new-energy-input">
+            </div>
+			-->
+			<label for="plateNumber">投保车辆信息：</label>
+            <input type="text" id="plateNumber" name="plateNumber" placeholder="请输入车牌号" required oninput="this.value = this.value.toUpperCase();">
+
+            <label for="phoneNumber">联系电话：</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="请输入手机号" required>
+
+            <p style="color: red; margin-top: 10px; font-size: 12px;">可直接联系我司专员：18668376388</p>
+
+            <button type="submit">提交</button>
+        </form>
+    </div>
+</div>
+
+<!-- 加载框 -->
+<div id="loading" style="display:none; background-color: rgba(0,0,0,0.5); color: white; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; border-radius: 5px;">正在提交请稍等...</div>
+
+<!-- 引入 EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+    // 初始化 EmailJS（使用 Public Key）
+    
+        emailjs.init("mp6O065I17nUnxHS8"); // 替换为你的 EmailJS Public Key
+		
+		// 正则表达式定义
+    const gasolinePlateRegex = /^[\u4e00-\u9fa5][A-Z][A-Z0-9]{5}$/; // 油车车牌号正则
+    const electricPlateRegex = /^[\u4e00-\u9fa5][A-Z][A-Z0-9]{6}$/; // 新能源车牌号正则
+	
+	function validatePlateNumber(plateNumber) {
+        return gasolinePlateRegex.test(plateNumber) || electricPlateRegex.test(plateNumber);
+    }
+    
+
+    document.getElementById('insuranceForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        //const plateNumber = document.querySelector('.plate-number').innerText.trim();
+		const plateNumber = document.getElementById('plateNumber').value.trim();
+        const phoneNumber = document.getElementById('phoneNumber').value.trim();
+		
+		// 显示加载框
+        document.getElementById('loading').style.display = 'block';
+		
+		if(!validatePlateNumber(plateNumber)) {
+			alert("请输入正确的车牌号！");
+			// 无论成功还是失败，最后都要隐藏加载框
+            document.getElementById('loading').style.display = 'none';
+			return;
+		}
+		
+        if (!plateNumber || !phoneNumber) {
+            alert("请检查车牌号或手机号是否填写！");
+			// 无论成功还是失败，最后都要隐藏加载框
+            document.getElementById('loading').style.display = 'none';
+            return;
+        }
+		
+		
+
+        // 发送邮件
+		
+        emailjs.send("service_27g2e7g", "template_cby7zu6", {
+            plate_number: plateNumber,
+            phone_number: phoneNumber
+        })
+        .then(function(response) {
+            alert('恭喜您提交成功！');
+            console.log('SUCCESS!');
+            document.getElementById('insuranceForm').reset(); // 清空表单
+        }, function(error) {
+            alert('邮件发送失败，请重试。');
+            console.error('ERROR:', error);
+        }).finally(function() {
+            // 无论成功还是失败，最后都要隐藏加载框
+            document.getElementById('loading').style.display = 'none';
+        });
+		
+    });
+</script>
+
+</body>
+</html>
